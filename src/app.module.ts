@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { PromptService } from './services/prompt/prompt.service';
+import { AiWriterController } from './controllers/ai-writer/ai-writer.controller';
+import { AiWriterModule } from './modules/ai-writer/ai-writer.module';
+import { AiWriterService } from './services/ai-writer/ai-writer.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [AiWriterModule],
+  controllers: [AiWriterController],
+  providers: [AiWriterService, PromptService],
 })
 export class AppModule {}
