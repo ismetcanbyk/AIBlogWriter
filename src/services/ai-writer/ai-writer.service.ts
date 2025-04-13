@@ -1,11 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  htmlPrompt,
-  jsonPrompt,
-  mdxJsonPrompt,
-  mdxPrompt,
-  systemPrompt,
-} from 'src/utils/prompts';
+import { jsonPrompt, mdxJsonPrompt, systemPrompt } from 'src/utils/prompts';
 import {
   BlogType,
   type BlogContext,

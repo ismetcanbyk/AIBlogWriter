@@ -16,7 +16,7 @@ export const jsonPrompt = async (blogContext: BlogContext) => {
     "meta_description": "{SEO İÇİN META AÇIKLAMASI}",
     "keywords": ["{ANAHTAR_KELİME_1}", "{ANAHTAR_KELİME_2}"],
     "introduction": "{GİRİŞ PARAGRAFI}",
-    "body": "{BLOG ANA METNİ}",
+    "content": "{BLOG ANA METNİ}",
   }
   `;
 
