@@ -30,6 +30,7 @@ export class AiIntegrationService {
           { role: 'system', content: systemPropmt },
           { role: 'user', content: prompt },
         ],
+        response_format: { type: 'json_object' },
       });
 
       return completion.choices[0]?.message?.content

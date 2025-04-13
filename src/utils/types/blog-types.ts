@@ -1,8 +1,6 @@
 export enum BlogType {
   JSON = 'JSON',
   MARKDOWN = 'MARKDOWN',
-  HTML = 'HTML',
-  MARKDOWN_JSON = 'MARKDOWN_JSON',
 }
 
 export interface BlogPost {

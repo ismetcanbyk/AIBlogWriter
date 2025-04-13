@@ -34,13 +34,7 @@ const selectPrompt = (apiBlogType: BlogType, promptContext: BlogContext) => {
     case BlogType.JSON:
       return jsonPrompt(promptContext);
 
-    case BlogType.HTML:
-      return htmlPrompt(promptContext);
-
     case BlogType.MARKDOWN:
-      return mdxPrompt(promptContext);
-
-    case BlogType.MARKDOWN_JSON:
       return mdxJsonPrompt(promptContext);
 
     default:
