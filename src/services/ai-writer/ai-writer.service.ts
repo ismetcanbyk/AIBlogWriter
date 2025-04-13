@@ -11,7 +11,7 @@ import {
   type BlogContext,
   type BlogGenerateRequest,
 } from 'src/utils/types/blog-types';
-import type { AiIntegrationService } from '../ai-integration/ai-integration.service';
+import { AiIntegrationService } from '../ai-integration/ai-integration.service';
 
 @Injectable()
 export class AiWriterService {

@@ -8,6 +8,6 @@ import { AiIntegrationService } from './services/ai-integration/ai-integration.s
 @Module({
   imports: [AiWriterModule],
   controllers: [AiWriterController],
-  providers: [AiWriterService, PromptService, AiIntegrationService],
+  providers: [PromptService],
 })
 export class AppModule {}
