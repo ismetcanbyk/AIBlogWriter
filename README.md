@@ -1,99 +1,208 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# AIBlogWriter
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+An open-source AI-powered blog content generator built with NestJS.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Overview
 
-## Description
+AIBlogWriter is a powerful tool designed to automatically generate high-quality blog content in various formats including Markdown and JSON. It leverages AI technology to create SEO-optimized articles based on your specifications.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
 
-## Project setup
+- Generate blog content in multiple formats (Markdown, JSON)
+- SEO optimization with metadata and keyword integration
+- Multi-language support
+- Modular architecture for easy extension
+- RESTful API for seamless integration
 
-```bash
-$ npm install
+## Project Structure
+
+```
+AIBlogWriter/
+├── src/
+│   ├── controllers/
+│   │   └── ai-writer/
+│   ├── modules/
+│   │   └── ai-writer/
+│   ├── services/
+│   │   ├── ai-integration/
+│   │   └── ai-writer/
+│   │
+│   ├── utils/
+│   │   ├── prompts/
+│   │   └── types/
+│   │
+│   ├── app.module.ts
+│   └── main.ts
+├── test/
+├── dist/
+├── node_modules/
+├── .env
+├── .env.example
+├── .gitignore
+├── .prettierrc
+├── eslint.config.js
+├── nest-cli.json
+├── package.json
+├── README.md
+├── tsconfig.build.json
+└── tsconfig.json
 ```
 
-## Compile and run the project
+## Installation
+
+1. Clone the repository
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/ismetcanbyk/AIBlogWriter
+cd AIBlogWriter
 ```
 
-## Run tests
+2. Install dependencies
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+3. Copy the environment example file and configure your API keys
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+cp .env.example .env
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+4. Edit the `.env` file with your OpenAI API key
 
-## Resources
+```
+OPENAI_API_KEY=your-api-key-here
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+## Running the Application
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Development Mode
 
-## Support
+```bash
+npm run start:dev
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Production Mode
 
-## Stay in touch
+```bash
+npm run build
+npm run start:prod
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## API Usage
+
+### Generate Blog Content
+
+```bash
+POST /api/ai-writer/generate-blog
+```
+
+### Example Requests and Responses
+
+Request Body:
+
+```json
+{
+  "type": "JSON",
+  "context": {
+    "title": "The Future of Artificial Intelligence",
+    "language": "en",
+    "keys": "AI, machine learning, future technology, automation",
+    "seo": true
+  }
+}
+```
+
+Available blog types:
+
+- `MARKDOWN` - Markdown formatted content
+- `JSON` - Structured JSON format
+
+  <br/>
+
+### MARKDOWN Example
+
+Request Body:
+
+```json
+{
+  "type": "MARKDOWN",
+  "context": {
+    "title": "The future of artificial intelligence",
+    "language": "en"
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "title": "The future of artificial intelligence",
+  "meta_description": "Discover the latest trends and predictions for the future of artificial intelligence in this insightful blog post.",
+  "keywords": ["artificial intelligence", "future", "AI", "technology"],
+  "introduction": "Artificial intelligence (AI) has been rapidly evolving and shaping the world around us. From virtual assistants to self-driving cars, AI has become an integral part of our daily lives. In this blog post, we will explore the current state of AI and discuss the exciting possibilities and challenges that lie ahead in the future of artificial intelligence.",
+  "content": "## The Evolution of AI\n\nArtificial intelligence has come a long way since its inception. Initially, AI was limited to performing specific tasks, but with advancements in machine learning and deep learning, AI systems can now learn, adapt, and improve on their own.\n\n## Current Applications of AI\n\nAI is already being used in various industries, such as healthcare, finance, and transportation. In healthcare, AI is helping doctors diagnose diseases more accurately and quickly. In finance, AI is being used for fraud detection and risk assessment. Self-driving cars are a prime example of AI revolutionizing the transportation industry.\n\n## The Future of AI\n\nThe future of artificial intelligence holds immense potential. AI is expected to continue transforming industries and revolutionizing processes. With the rise of quantum computing, AI algorithms will become even more powerful and efficient. Ethical considerations around AI, such as bias and privacy issues, will also become increasingly important.\n\nIn conclusion, the future of artificial intelligence is bright and full of possibilities. As technology continues to advance, AI will play a crucial role in shaping the future of our world."
+}
+```
+
+  <br/>
+
+### JSON Example
+
+Request Body:
+
+```json
+{
+  "type": "JSON",
+  "context": {
+    "title": "The future of artificial intelligence",
+    "language": "en"
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "title": "The future of artificial intelligence",
+  "meta_description": "Discover the latest trends and advancements shaping the future of artificial intelligence.",
+  "keywords": ["artificial intelligence", "future", "technology", "innovation"],
+  "introduction": "Artificial intelligence (AI) continues to revolutionize industries and change the way we interact with technology. As we look ahead, the future of AI holds immense potential for further advancements and applications.",
+  "body": "One of the key areas where AI is expected to make a significant impact is in automation. From self-driving cars to smart homes, AI-powered systems are poised to streamline processes and enhance efficiency. Additionally, AI is increasingly being utilized in healthcare for tasks such as diagnostics, personalized treatment plans, and drug discovery.\n\nThe future of artificial intelligence also encompasses the ethical considerations surrounding its development and deployment. As AI becomes more integrated into society, questions of bias, privacy, and accountability come to the forefront. It is crucial for stakeholders to address these issues proactively to ensure that AI technologies are developed and used responsibly.\n\nLooking ahead, the field of AI is set to witness rapid growth and innovation. Advancements in machine learning, natural language processing, and robotics are paving the way for exciting new possibilities. As researchers and developers continue to push the boundaries of AI, we can expect to see transformative changes in various sectors, from business to education to entertainment."
+}
+```
+
+Available blog types:
+
+- `MARKDOWN` - Markdown formatted content
+- `JSON` - Structured JSON format
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-# AIBlogWriter
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Built with [NestJS](https://nestjs.com/)
+- Powered by [OpenAI](https://openai.com/)
+
+## Contact
+
+### Feel free to contact me with any questions or suggestions.
+
+- [LinkedIn](https://www.linkedin.com/in/ismetcanbyk)
+- [Instagram](https://www.instagram.com/ismetcanbyk/)
+- [Github](https://github.com/ismetcanbyk)

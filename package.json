@@ -1,10 +1,10 @@
 {
   "name": "ai-blog-writer",
   "version": "0.0.1",
-  "description": "",
+  "description": "AIBlogWriter is a powerful tool designed to automatically generate high-quality blog content in various formats including Markdown and JSON. It leverages AI technology to create SEO-optimized articles based on your specifications.",
   "author": "ismetcanbyk",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
