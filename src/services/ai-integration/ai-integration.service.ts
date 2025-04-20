@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { OpenAI } from 'openai';
 
-interface BlogResponse {
-  title?: string;
-  content?: string;
-  description?: string;
-  category?: string;
+export interface OpenAIResponseOptions {
+  model?: string;
+  temperature?: number;
+  responseFormat?: 'text' | 'json_object';
 }
 
 @Injectable()
@@ -14,31 +13,44 @@ export class AiIntegrationService {
     apiKey: process.env.OPENAI_API_KEY,
   });
 
-  async generateText(
+  async generateContent<T = Record<string, unknown>>(
     prompt: string,
-    systemPropmt: string,
-  ): Promise<BlogResponse> {
+    systemPrompt: string,
+    options: OpenAIResponseOptions = {},
+  ): Promise<T> {
     if (!prompt) {
       throw new Error('Prompt cannot be empty');
     }
 
+    const {
+      model = process.env.OPENAI_MODEL || 'gpt-3.5-turbo',
+      temperature = 0.58,
+      responseFormat = 'json_object',
+    } = options;
+
     try {
       const completion = await this.openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
-        temperature: 0.58,
+        model,
+        temperature,
         messages: [
-          { role: 'system', content: systemPropmt },
+          { role: 'system', content: systemPrompt },
           { role: 'user', content: prompt },
         ],
-        response_format: { type: 'json_object' },
+        response_format: { type: responseFormat },
       });
 
-      return completion.choices[0]?.message?.content
-        ? JSON.parse(completion.choices[0].message.content)
-        : {};
+      if (!completion.choices[0]?.message?.content) {
+        throw new Error('No response from OpenAI');
+      }
+
+      if (responseFormat === 'json_object') {
+        return JSON.parse(completion.choices[0].message.content) as T;
+      }
+
+      return completion.choices[0].message.content as unknown as T;
     } catch (error) {
       console.error('OpenAI Error:', error);
-      throw new Error('Error during AI text generation.');
+      throw new Error('Error during AI content generation.');
     }
   }
 }

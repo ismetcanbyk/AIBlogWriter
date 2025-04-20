@@ -1,25 +1,27 @@
 import { Injectable } from '@nestjs/common';
+import { AiIntegrationService } from '../ai-integration/ai-integration.service';
 import { jsonPrompt, mdxJsonPrompt, systemPrompt } from 'src/utils/prompts';
 import {
   BlogType,
-  type BlogContext,
-  type BlogGenerateRequest,
+  BlogContext,
+  BlogGenerateRequest,
 } from 'src/utils/types/blog-types';
-import { AiIntegrationService } from '../ai-integration/ai-integration.service';
+import { BaseBlogResponseDto, BlogResponseFactory } from 'src/utils/dto';
 
 @Injectable()
 export class AiWriterService {
   constructor(private readonly aiIntegration: AiIntegrationService) {}
 
-  async apiBlogGenerate(body: BlogGenerateRequest): Promise<any> {
+  async apiBlogGenerate(
+    body: BlogGenerateRequest,
+  ): Promise<BaseBlogResponseDto> {
     const selectedPrompt = await selectPrompt(body.type, body.context);
 
-    const blog = await this.aiIntegration.generateText(
-      selectedPrompt,
-      systemPrompt,
-    );
+    const rawResponse = await this.aiIntegration.generateContent<
+      Record<string, unknown>
+    >(selectedPrompt, systemPrompt, { responseFormat: 'json_object' });
 
-    return blog;
+    return BlogResponseFactory.createFromType(body.type, rawResponse);
   }
 }
 
@@ -27,10 +29,8 @@ const selectPrompt = (apiBlogType: BlogType, promptContext: BlogContext) => {
   switch (apiBlogType) {
     case BlogType.JSON:
       return jsonPrompt(promptContext);
-
     case BlogType.MARKDOWN:
       return mdxJsonPrompt(promptContext);
-
     default:
       return jsonPrompt(promptContext);
   }
