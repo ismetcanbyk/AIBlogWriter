@@ -13,4 +13,5 @@ export interface BlogContext {
 export interface BlogGenerateRequest {
   type: BlogType;
   context: BlogContext;
+  evaluation?: boolean;
 }

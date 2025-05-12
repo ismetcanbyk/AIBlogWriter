@@ -1,5 +1,6 @@
-import { IsString, IsArray } from 'class-validator';
+import { IsString, IsArray, IsObject } from 'class-validator';
 import { BlogType } from '../types/blog-types';
+import type { BlogEvaluationResult } from 'src/services/blog-evaluation/blog-evaluation.service';
 
 export class BaseBlogResponseDto {
   @IsString()
@@ -17,6 +18,9 @@ export class BaseBlogResponseDto {
 
   @IsString()
   content: string;
+
+  @IsObject()
+  evaluation: BlogEvaluationResult;
 }
 
 export class MarkdownBlogResponseDto extends BaseBlogResponseDto {}
@@ -53,5 +57,6 @@ export class BlogResponseFactory {
     response.keywords = Array.isArray(data.keywords) ? data.keywords : [];
     response.introduction = data.introduction;
     response.content = data.content;
+    response.evaluation = data.evaluation;
   }
 }
